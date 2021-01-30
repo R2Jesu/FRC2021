@@ -56,6 +56,11 @@
 #include <frc/DigitalInput.h>
 #include <frc/Timer.h>
 
+//Limelight 
+#include "frc/smartdashboard/Smartdashboard.h"
+#include "networktables/NetworkTable.h"
+#include "networktables/NetworkTableInstance.h"
+
 #define R2JESU_TURNON_SMARTDASHBOARD 1
 
 // Control robot config for either Fin (1) or Rex (0)
@@ -213,4 +218,6 @@ private:
 
   // Debug & feedback
   frc::LiveWindow &m_lw = *frc::LiveWindow::GetInstance();
+
+  std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
 };

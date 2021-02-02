@@ -84,6 +84,8 @@
 #define R2JESU_TURNON_NAV 1
 #endif
 
+#define PI 3.14159265
+
 class Robot : public frc::TimedRobot
 {
 public:
@@ -133,7 +135,8 @@ private:
   void R2Jesu_ProcessIntake(void);
 
   // Vision Processing
-  static void VisionThread(void);
+  //static void VisionThread(void);
+  void R2Jesu_Limelight(void);
 
   // =================================================
   //  Class Objects
@@ -219,5 +222,5 @@ private:
   // Debug & feedback
   frc::LiveWindow &m_lw = *frc::LiveWindow::GetInstance();
 
-  std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+  std::shared_ptr<NetworkTable> limelight_Table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
 };

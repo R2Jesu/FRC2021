@@ -11,6 +11,19 @@
 double Robot::turning;
 double Robot::currentDistance;
 
+void Robot::AutonomousInit() 
+{
+  m_timer.Reset();
+  m_timer.Start();  
+  R2Jesu_Slalom();
+}
+
+void Robot::AutonomousPeriodic() 
+{
+  //R2Jesu_Autonomous();
+
+}
+
 void Robot::RobotInit()
 {
   // Init Timer
@@ -57,8 +70,13 @@ void Robot::RobotInit()
 // NavX Sensor
 #if R2JESU_TURNON_NAV
   ahrs = new AHRS(frc::SPI::Port::kMXP);
+  ahrs->Reset();
   ahrs->ZeroYaw();
 #endif
+m_encL.Reset();
+m_encR.Reset();
+m_encL.SetDistancePerPulse(1.0 / 2048.0 * 2.0 * wpi::math::pi * 3.0);
+m_encR.SetDistancePerPulse(1.0 / 2048.0 * 2.0 * wpi::math::pi * 3.0);
 
   // Vision & Camera Init
 
@@ -72,7 +90,7 @@ void Robot::RobotInit()
 
 void Robot::RobotPeriodic(){
 
-/* frc::SmartDashboard::PutNumber("IMU_Yaw", ahrs->GetYaw());
+frc::SmartDashboard::PutNumber("IMU_Yaw", ahrs->GetYaw());
 frc::SmartDashboard::PutNumber("IMU_Pitch", ahrs->GetPitch());
 frc::SmartDashboard::PutNumber("IMU_Roll", ahrs->GetRoll());
 frc::SmartDashboard::PutNumber("IMU_CompassHeading", ahrs->GetCompassHeading());
@@ -82,7 +100,13 @@ frc::SmartDashboard::PutNumber("Displacement_X", ahrs->GetDisplacementX());
 frc::SmartDashboard::PutNumber("Displacement_Y", ahrs->GetDisplacementY());
 frc::SmartDashboard::PutNumber("RawGyro_X", ahrs->GetRawGyroX());
 frc::SmartDashboard::PutNumber("RawGyro_Y", ahrs->GetRawGyroY());
-frc::SmartDashboard::PutNumber("RawGyro_Z", ahrs->GetRawGyroZ()); */
+frc::SmartDashboard::PutNumber("RawGyro_Z", ahrs->GetRawGyroZ());
+frc::SmartDashboard::PutNumber("Angle", ahrs->GetAngle());
+
+frc::SmartDashboard::PutNumber("Left Encoder Distance", m_encL.GetDistance());
+frc::SmartDashboard::PutNumber("Left Encoder Cout", m_encL.Get());
+frc::SmartDashboard::PutNumber("Right Encoder Distance", m_encR.GetDistance());
+frc::SmartDashboard::PutNumber("Right Encoder Cout", m_encR.Get());
 
 R2Jesu_Limelight();
 

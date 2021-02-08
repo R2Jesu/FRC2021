@@ -138,6 +138,10 @@ private:
   //static void VisionThread(void);
   void R2Jesu_Limelight(void);
 
+  //Autonomous Programs
+  void R2Jesu_Autonomous(void);
+  void R2Jesu_Slalom(void);
+
   // =================================================
   //  Class Objects
   // =================================================
@@ -154,8 +158,8 @@ private:
 
 // Encoders
 #if R2JESU_TURNON_ENCODER
-  frc::Encoder m_encL{7, 8, false, frc::Encoder::k4X};
-  frc::Encoder m_encR{4, 5, false, frc::Encoder::k4X};
+  frc::Encoder m_encL{7, 8, true, frc::Encoder::k4X};
+  frc::Encoder m_encR{4, 5, true, frc::Encoder::k4X};
 #endif
 
   // Because motor control cmds may come from other parts of the code use these

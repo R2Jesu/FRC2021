@@ -18,7 +18,8 @@ void Robot::R2Jesu_ProcessDrive(double p_LimitFactor)
   else
   {
   m_drvL = -m_Drivestick.GetY() * p_LimitFactor;
-  m_drvR = (m_Drivestick.GetX()+(m_Drivestick.GetTwist()*0.4f)) * p_LimitFactor;
+  //m_drvR = (m_Drivestick.GetX()+(m_Drivestick.GetTwist()*0.4f)) * p_LimitFactor;
+  m_drvR = (m_Drivestick.GetTwist()*0.4) * p_LimitFactor;
   }
   
 

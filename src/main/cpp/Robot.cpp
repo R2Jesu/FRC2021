@@ -15,7 +15,8 @@ void Robot::AutonomousInit()
 {
   m_timer.Reset();
   m_timer.Start();  
-  R2Jesu_Slalom();
+  //R2Jesu_Slalom();
+  R2Jesu_Barrel();
 }
 
 void Robot::AutonomousPeriodic() 
@@ -71,7 +72,6 @@ void Robot::RobotInit()
 #if R2JESU_TURNON_NAV
   ahrs = new AHRS(frc::SPI::Port::kMXP);
   ahrs->Reset();
-  ahrs->ZeroYaw();
 #endif
 m_encL.Reset();
 m_encR.Reset();
@@ -89,7 +89,7 @@ m_encR.SetDistancePerPulse(1.0 / 2048.0 * 2.0 * wpi::math::pi * 3.0);
 }
 
 void Robot::RobotPeriodic(){
-
+/*
 frc::SmartDashboard::PutNumber("IMU_Yaw", ahrs->GetYaw());
 frc::SmartDashboard::PutNumber("IMU_Pitch", ahrs->GetPitch());
 frc::SmartDashboard::PutNumber("IMU_Roll", ahrs->GetRoll());
@@ -107,7 +107,7 @@ frc::SmartDashboard::PutNumber("Left Encoder Distance", m_encL.GetDistance());
 frc::SmartDashboard::PutNumber("Left Encoder Cout", m_encL.Get());
 frc::SmartDashboard::PutNumber("Right Encoder Distance", m_encR.GetDistance());
 frc::SmartDashboard::PutNumber("Right Encoder Cout", m_encR.Get());
-
+*/
 R2Jesu_Limelight();
 
 }

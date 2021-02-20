@@ -141,6 +141,7 @@ private:
   //Autonomous Programs
   void R2Jesu_Autonomous(void);
   void R2Jesu_Slalom(void);
+  void R2Jesu_Barrel(void);
 
   // =================================================
   //  Class Objects

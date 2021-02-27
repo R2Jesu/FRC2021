@@ -66,6 +66,8 @@ void Robot::RobotInit()
   compressorObject.SetClosedLoopControl(true);
   // Set Solenoids to iniital stat
   ballPopper.Set(false);
+  //double solenoid starts up
+  jaws.Set(frc::DoubleSolenoid::Value::kForward);
 #endif
 
 // NavX Sensor

@@ -39,6 +39,7 @@
 // Pneumatics
 #include <frc/Compressor.h>
 #include <frc/Solenoid.h>
+#include <frc/DoubleSolenoid.h>
 
 // Camera
 
@@ -183,6 +184,7 @@ private:
   frc::Compressor compressorObject;
   frc::Solenoid ballPopper{0};
   frc::Solenoid colorArm{1};
+  frc::DoubleSolenoid jaws{2,3};
 #endif
 
 

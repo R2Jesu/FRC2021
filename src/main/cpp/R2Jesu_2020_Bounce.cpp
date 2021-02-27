@@ -6,7 +6,7 @@ void Robot::R2Jesu_Bounce()
   m_encL.Reset();
   m_encR.Reset();
   double correction;
-  while ((m_encL.GetDistance() < 25.0) && (m_encR.GetDistance() < 25.0)) 
+  while ((m_encL.GetDistance() < 50.0) && (m_encR.GetDistance() < 50.0)) 
   {
     m_robotDrive.ArcadeDrive(0.4, 0.0, true);
   } 
@@ -32,7 +32,7 @@ void Robot::R2Jesu_Bounce()
    m_encL.Reset();
    m_encR.Reset();
 
-  while ((m_encL.GetDistance() < 15.0) && (m_encR.GetDistance() < 15.0)) 
+  while ((m_encL.GetDistance() < 20.0) && (m_encR.GetDistance() < 20.0)) 
   {
       m_robotDrive.ArcadeDrive(0.4, 0.0, true);
   } 

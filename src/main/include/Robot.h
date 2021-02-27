@@ -143,6 +143,7 @@ private:
   void R2Jesu_Autonomous(void);
   void R2Jesu_Slalom(void);
   void R2Jesu_Barrel(void);
+  void R2Jesu_Bounce(void);
 
   // =================================================
   //  Class Objects

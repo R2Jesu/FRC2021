@@ -60,4 +60,26 @@ void Robot::R2Jesu_Barrel()
     frc::SmartDashboard::PutNumber("IMU_Yaw", ahrs->GetYaw());}
      m_robotDrive.ArcadeDrive(0, 0, true);
 
+     m_encL.Reset();
+     m_encR.Reset();
+
+ while ((m_encL.GetDistance() < 260) && (m_encR.GetDistance() < 260)) {
+    correction = .1 * (180 - ahrs->GetAngle());
+    if (correction == 36){
+      correction = 0;
+    }
+    if ((correction < 36) && (correction > 18)){
+      correction = -.27;
+    }
+    if (correction < -.27){
+      correction = -.27;
+    }
+    if (correction > .27){
+      correction = .27;
+    }
+      m_robotDrive.ArcadeDrive(0.6, correction, true);
+    } 
+
+       m_robotDrive.ArcadeDrive(0, 0, true);
+
 }

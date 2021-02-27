@@ -16,7 +16,8 @@ void Robot::AutonomousInit()
   m_timer.Reset();
   m_timer.Start();  
   //R2Jesu_Slalom();
-  R2Jesu_Barrel();
+  //R2Jesu_Barrel();
+  R2Jesu_Bounce();
 }
 
 void Robot::AutonomousPeriodic() 
@@ -105,8 +106,9 @@ frc::SmartDashboard::PutNumber("RawGyro_Y", ahrs->GetRawGyroY());
 frc::SmartDashboard::PutNumber("RawGyro_Z", ahrs->GetRawGyroZ());
 frc::SmartDashboard::PutNumber("Angle", ahrs->GetAngle());
 
-frc::SmartDashboard::PutNumber("Left Encoder Distance", m_encL.GetDistance());
+
 frc::SmartDashboard::PutNumber("Left Encoder Cout", m_encL.Get());
+frc::SmartDashboard::PutNumber("Left Encoder Distance", m_encL.GetDistance());
 frc::SmartDashboard::PutNumber("Right Encoder Distance", m_encR.GetDistance());
 frc::SmartDashboard::PutNumber("Right Encoder Cout", m_encR.Get());
 */

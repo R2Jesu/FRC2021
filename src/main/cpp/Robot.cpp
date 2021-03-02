@@ -17,12 +17,30 @@ void Robot::AutonomousInit()
   m_timer.Start();  
   //R2Jesu_Slalom();
   //R2Jesu_Barrel();
-  R2Jesu_Bounce();
+  //R2Jesu_Bounce();
+
 }
 
 void Robot::AutonomousPeriodic() 
 {
-  //R2Jesu_Autonomous();
+
+if ((frc::SmartDashboard::GetString("autonomous course", "0") == "1") 
+  && (frc::SmartDashboard::GetString("has bounce run", "n") == "n")) {
+  R2Jesu_Bounce(); 
+  frc::SmartDashboard::PutString("has bounce run", "y");
+}
+
+if ((frc::SmartDashboard::GetString("autonomous course", "0") == "2") 
+  && (frc::SmartDashboard::GetString("has slalom run", "n") == "n")) {
+  R2Jesu_Slalom(); 
+  frc::SmartDashboard::PutString("has slalom run", "y");
+}
+
+if ((frc::SmartDashboard::GetString("autonomous course", "0") == "3") 
+  && (frc::SmartDashboard::GetString("has barrel run", "n") == "n")) {
+  R2Jesu_Barrel(); 
+  frc::SmartDashboard::PutString("has barrel run", "y");
+}
 
 }
 
@@ -80,7 +98,6 @@ m_encL.Reset();
 m_encR.Reset();
 m_encL.SetDistancePerPulse(1.0 / 2048.0 * 2.0 * wpi::math::pi * 3.0);
 m_encR.SetDistancePerPulse(1.0 / 2048.0 * 2.0 * wpi::math::pi * 3.0);
-
   // Vision & Camera Init
 
   // Drive USB Camera - 1
@@ -88,6 +105,12 @@ m_encR.SetDistancePerPulse(1.0 / 2048.0 * 2.0 * wpi::math::pi * 3.0);
   drvCamera.SetResolution(320, 240);
   drvCamera.SetExposureAuto();
 //  drvCamera.SetFPS(15);
+  frc::SmartDashboard::PutString("has slalom run", "n");
+  frc::SmartDashboard::PutString("has barrel run", "n");
+  frc::SmartDashboard::PutString("has bounce run", "n");
+
+  frc::SmartDashboard::PutString("autonomous course", "0");
+
 
 }
 

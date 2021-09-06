@@ -22,8 +22,11 @@ void Robot::R2Jesu_Limelight()
   frc::SmartDashboard::PutNumber("targetOffsetAngle_Vertical", limelight_Table->GetNumber("ty",0.0));
  
    //(Target height - camera height) / tan((camera angle + target offset angle from limelight)) * (PI / 180)))
-   double ourDist = (((double)98.25 - (double)26.75) / tan(((double)12.2 + targetOffsetAngle_Vertical) * (PI / 180)));
+   double ourDist = (((double)98.25 - (double)26.75) / tan(((double)33.02386 + targetOffsetAngle_Vertical) * (PI / 180)));
    currentDistance = ourDist;
+   if (targetOffsetAngle_Vertical == 0.0){
+      currentDistance = 0.0;
+   }
    frc::SmartDashboard::PutNumber("current distance", currentDistance);
 
 }

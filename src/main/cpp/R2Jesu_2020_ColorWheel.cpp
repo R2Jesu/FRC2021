@@ -20,6 +20,7 @@
 
 void Robot::R2Jesu_ProcessColorWheel()
 {
+  R2Jesu_ReadColorWheel();
 
   double l_drvMotorLimit = 0.25; // Limit drive motors to 25% when color wheel processing
 #if R2JESU_TURNON_PNEUMATICS
@@ -36,9 +37,12 @@ void Robot::R2Jesu_ProcessColorWheel()
   { //red button
     //run motor until game color is seen once
   colorArm.Set(true);
-    int colorCounter = 0;
-    ColorWheelmotor.Set(NidecValue);
-    while (colorCounter < 1 && !(m_OperatorStick.GetRawButton(7)))
+  std::this_thread::sleep_for(std::chrono::milliseconds(250));
+  if (gameColor != R2Jesu_ReadColorWheel())
+  {int colorCounter = 0;
+    ColorWheelmotor.Set(.5);
+    std::this_thread::sleep_for(std::chrono::milliseconds(750));
+    while (colorCounter < 2 && !(m_OperatorStick.GetRawButton(7)))
     {
       if (gameColor == R2Jesu_ReadColorWheel())
       {
@@ -47,8 +51,11 @@ void Robot::R2Jesu_ProcessColorWheel()
       // Allow for operator driving
       R2Jesu_ProcessDrive(l_drvMotorLimit);
     }
-
-    ColorWheelmotor.Set(0.0);
+    ColorWheelmotor.Set(-.4);
+    std::this_thread::sleep_for(std::chrono::milliseconds(333));
+    ColorWheelmotor.StopMotor();
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
       colorArm.Set(false);
   }
 
@@ -65,7 +72,20 @@ void Robot::R2Jesu_ProcessColorWheel()
      * Run the color match algorithm on our detected color
      */
     frc::Color startingColor = R2Jesu_ReadColorWheel();
-    ColorWheelmotor.Set(NidecValue);
+    frc::Color secondColor;
+
+    if (startingColor == kBlueTarget){
+      secondColor = kYellowTarget;
+    } else if (startingColor == kYellowTarget){
+      secondColor = kRedTarget;
+    } else if (startingColor == kRedTarget) {
+      secondColor = kGreenTarget;
+    } else if (startingColor == kGreenTarget){
+      secondColor = kBlueTarget;
+    }
+
+    
+    ColorWheelmotor.Set(.45);
     while (colorCount < 9 && !(m_OperatorStick.GetRawButton(7)))
     {
       if (startingColor == R2Jesu_ReadColorWheel())
@@ -75,7 +95,7 @@ void Robot::R2Jesu_ProcessColorWheel()
           colorCount2 = 0;
           while (colorCount2 < 1 && !(m_OperatorStick.GetRawButton(7)))
           {
-            if (!(startingColor == R2Jesu_ReadColorWheel()))
+            if (secondColor == R2Jesu_ReadColorWheel())
             {
               colorCount2++;
             }
@@ -86,8 +106,11 @@ void Robot::R2Jesu_ProcessColorWheel()
       }
     //  R2Jesu_ProcessDrive(l_drvMotorLimit);
     }
-    ColorWheelmotor.Set(0.0);
-      colorArm.Set(false);
+    ColorWheelmotor.Set(-.4);
+    std::this_thread::sleep_for(std::chrono::milliseconds(333));
+    ColorWheelmotor.StopMotor();
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    colorArm.Set(false);
   }
 }
 
@@ -148,13 +171,13 @@ frc::Color Robot::R2Jesu_ReadColorWheel()
     colorString = "Unknown";
   }
 
-#if R2JESU_TURNON_SMARTDASHBOARD
+//#if R2JESU_TURNON_SMARTDASHBOARD
   frc::SmartDashboard::PutNumber("Red", detectedColor.red);
   frc::SmartDashboard::PutNumber("Green", detectedColor.green);
   frc::SmartDashboard::PutNumber("Blue", detectedColor.blue);
   frc::SmartDashboard::PutNumber("Confidence", ColorConfidence);
   frc::SmartDashboard::PutString("Detected Color", colorString);
-#endif
+//#endif
 
   return (matchedColor);
 }

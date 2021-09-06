@@ -29,7 +29,7 @@ void Robot::R2Jesu_Slalom()
   m_encL.Reset();
   m_encR.Reset();
    
-     while ((m_encL.GetDistance() < 68.0) && (m_encR.GetDistance() < 68.0)) {
+     while ((m_encL.GetDistance() < 60.0) && (m_encR.GetDistance() < 60.0)) {
     // Drive forwards half speed
     m_robotDrive.ArcadeDrive(0.5, 0.0, true);
   } 
@@ -102,7 +102,7 @@ void Robot::R2Jesu_Slalom()
     m_encL.Reset();
     m_encR.Reset();
 
-    while ((m_encL.GetDistance() < 57.0) && (m_encR.GetDistance() < 57.0)) {
+    while ((m_encL.GetDistance() < 60.0) && (m_encR.GetDistance() < 60.0)) {
     m_robotDrive.ArcadeDrive(0.5, 0.0, true);}
 
   while (ahrs->GetYaw() > -155) {

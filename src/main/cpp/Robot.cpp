@@ -101,20 +101,21 @@ m_encR.SetDistancePerPulse(1.0 / 2048.0 * 2.0 * wpi::math::pi * 3.0);
   // Vision & Camera Init
 
   // Drive USB Camera - 1
-  cs::UsbCamera drvCamera = frc::CameraServer::GetInstance()->StartAutomaticCapture(1);
+  cs::UsbCamera drvCamera = frc::CameraServer::GetInstance()->StartAutomaticCapture(0);
   drvCamera.SetResolution(320, 240);
   drvCamera.SetExposureAuto();
-//  drvCamera.SetFPS(15);
+  drvCamera.SetFPS(15);
   frc::SmartDashboard::PutString("has slalom run", "n");
   frc::SmartDashboard::PutString("has barrel run", "n");
   frc::SmartDashboard::PutString("has bounce run", "n");
 
   frc::SmartDashboard::PutString("autonomous course", "0");
 
-
+  frc::SmartDashboard::PutNumber("manual power", 0.00);
 }
 
 void Robot::RobotPeriodic(){
+  
 /*
 frc::SmartDashboard::PutNumber("IMU_Yaw", ahrs->GetYaw());
 frc::SmartDashboard::PutNumber("IMU_Pitch", ahrs->GetPitch());

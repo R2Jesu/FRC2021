@@ -6,23 +6,36 @@
 /*----------------------------------------------------------------------------*/
 
 #include "Robot.h"
+double l_mtrPwr = 0.0;
+double shooterPower = 0.0;
 
 void Robot::R2Jesu_ProcessShooter()
 {
   // Control shooter
-  double l_mtrPwr = 0.0;
-  double shooterPower = (currentDistance * .0003007) + .3472;
-  frc::SmartDashboard::PutNumber("current distance 2", currentDistance);
-  if (shooterPower < .39){
-    shooterPower = .39;
+ // double shooterPower = ((12.6 - frc::DriverStation::GetInstance().GetBatteryVoltage()) / 100) + ((currentDistance * .0004761905) + .3057143);
+ double shooterPower = ((currentDistance * .0004761905) + .3057143);
+  //shooterPower = frc::SmartDashboard::GetNumber("manual power", shooterPower);
+  //frc::SmartDashboard::PutNumber("current distance 2", currentDistance);
+
+  if (shooterPower < .40){
+    shooterPower = .40;
   }
   if (currentDistance == 0){
     shooterPower = .75;
+  }
+  if (m_OperatorStick.GetRawButton(4)) {
+    shooterPower = .7;
   }
   if (m_OperatorStick.GetThrottle() > 0.3)
   {
     l_mtrPwr = -shooterPower;
   }
+else
+  {
+    l_mtrPwr = 0.00;
+  }
+
+  
 frc::SmartDashboard::PutNumber("shooter power", shooterPower);  
 #if 0 // Test Code
   // Rest is test Code 

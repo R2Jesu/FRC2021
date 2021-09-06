@@ -7,7 +7,7 @@ void Robot::R2Jesu_Bounce()
   m_encL.Reset();
   m_encR.Reset();
   double correction;
-  while ((m_encL.GetDistance() < 37.0) && (m_encR.GetDistance() < 37.0)) 
+  while ((m_encL.GetDistance() < 36.0) && (m_encR.GetDistance() < 36.0)) 
   {
     m_robotDrive.ArcadeDrive(0.5, 0.0, true);
   } 
@@ -59,14 +59,14 @@ void Robot::R2Jesu_Bounce()
 // 85 95
   while ((ahrs->GetYaw() > 95) || (ahrs->GetYaw() < 85)) 
   {
-    m_robotDrive.ArcadeDrive(-0.5, -0.375, true);
+    m_robotDrive.ArcadeDrive(-0.5, -0.39, true);
     frc::SmartDashboard::PutNumber("IMU_Yaw", ahrs->GetYaw());
   }
 
   m_encL.Reset();
   m_encR.Reset();
 
-while ((m_encL.GetDistance() > -85.0) && (m_encR.GetDistance() > -85.0)) 
+while ((m_encL.GetDistance() > -92.0) && (m_encR.GetDistance() > -92.0)) 
 {
     correction = .1 * (90 - ahrs->GetYaw());
      

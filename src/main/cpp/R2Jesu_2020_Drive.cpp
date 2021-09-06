@@ -9,6 +9,7 @@
 
 void Robot::R2Jesu_ProcessDrive(double p_LimitFactor)
 {
+  double drive_throttle = (m_Drivestick.GetThrottle() - 1) * -.4;
   // Limit the drive motors for certain operations like color wheel
   if (m_Drivestick.GetRawButton(1)) // Break
   {
@@ -17,10 +18,11 @@ void Robot::R2Jesu_ProcessDrive(double p_LimitFactor)
   }
   else
   {
-  m_drvL = -m_Drivestick.GetY() * p_LimitFactor;
-  m_drvR = (m_Drivestick.GetX()+(m_Drivestick.GetTwist()*0.4f)) * p_LimitFactor;
+  m_drvL = -m_Drivestick.GetY() * drive_throttle;
+  //m_drvR = (m_Drivestick.GetX()+(m_Drivestick.GetTwist()*0.4f)) * p_LimitFactor;
+  m_drvR = (m_Drivestick.GetTwist() * .7) * drive_throttle;
   }
-  
+
 
   // Drive with arcade style (use right stick)
   m_robotDrive.ArcadeDrive(m_drvL, m_drvR);
@@ -30,5 +32,6 @@ void Robot::R2Jesu_ProcessDrive(double p_LimitFactor)
   frc::SmartDashboard::PutNumber("DrvR", m_drvR);
   frc::SmartDashboard::PutNumber("DrvL", m_drvL);
   frc::SmartDashboard::PutNumber("DrvLimit", p_LimitFactor);
+  frc::SmartDashboard::PutNumber("throttle", m_Drivestick.GetThrottle());
 #endif
 }

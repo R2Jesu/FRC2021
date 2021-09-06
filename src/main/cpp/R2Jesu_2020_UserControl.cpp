@@ -18,9 +18,9 @@
 //   01:  Robot Brake
 //   02:  Turbo ??
 //   03:  Align to Target : In Work
-//   04:
+//   04: arm up  
 //   05:
-//   06:
+//   06:   Drop arm
 //   07:
 //   08:  Color wheel arm thing solenoid
 //   09:

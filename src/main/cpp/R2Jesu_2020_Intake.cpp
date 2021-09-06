@@ -39,6 +39,19 @@ void Robot::R2Jesu_ProcessIntake()
     l_ballintakeMtr = 1.0;
   }
 
+//ball collector double solenoid
+#if R2JESU_TURNON_PNEUMATICS
+ //go down
+  if (m_Drivestick.GetRawButton(6)) {
+   jaws.Set(frc::DoubleSolenoid::Value::kReverse);
+  }
+//go up
+  if (m_Drivestick.GetRawButton(4)) {
+    jaws.Set(frc::DoubleSolenoid::Value::kForward);
+  }
+
+#endif
+
 #if R2JESU_TURNON_INTAKE
   snowMotor.Set(l_ballintakeMtr);
 #endif

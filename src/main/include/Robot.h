@@ -5,6 +5,9 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+#include <chrono>
+
+
 // WPI Libs
 #include <frc/Joystick.h>
 #include <frc/TimedRobot.h>
@@ -39,6 +42,7 @@
 // Pneumatics
 #include <frc/Compressor.h>
 #include <frc/Solenoid.h>
+#include <frc/DoubleSolenoid.h>
 
 // Camera
 
@@ -138,6 +142,12 @@ private:
   //static void VisionThread(void);
   void R2Jesu_Limelight(void);
 
+  //Autonomous Programs
+  void R2Jesu_Autonomous(void);
+  void R2Jesu_Slalom(void);
+  void R2Jesu_Barrel(void);
+  void R2Jesu_Bounce(void);
+
   // =================================================
   //  Class Objects
   // =================================================
@@ -154,8 +164,8 @@ private:
 
 // Encoders
 #if R2JESU_TURNON_ENCODER
-  frc::Encoder m_encL{7, 8, false, frc::Encoder::k4X};
-  frc::Encoder m_encR{4, 5, false, frc::Encoder::k4X};
+  frc::Encoder m_encL{7, 8, true, frc::Encoder::k4X};
+  frc::Encoder m_encR{4, 5, true, frc::Encoder::k4X};
 #endif
 
   // Because motor control cmds may come from other parts of the code use these
@@ -178,6 +188,7 @@ private:
   frc::Compressor compressorObject;
   frc::Solenoid ballPopper{0};
   frc::Solenoid colorArm{1};
+  frc::DoubleSolenoid jaws{2,3};
 #endif
 
 

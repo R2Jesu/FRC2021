@@ -180,6 +180,8 @@ private:
 #if R2JESU_TURNON_SHOOTER
   rev::CANSparkMax m_ShooterMotorLeft{1, rev::CANSparkMax::MotorType::kBrushless};
   rev::CANSparkMax m_ShooterMotorRight{3, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANEncoder m_ShooterEncoderLeft = m_ShooterMotorLeft.GetEncoder();
+  rev::CANEncoder m_ShooterEncoderRight = m_ShooterMotorRight.GetEncoder();
   frc::DigitalInput lowerLimit{1};
   frc::DigitalInput ballCupLimit{2};
 #endif

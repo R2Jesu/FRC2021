@@ -13,6 +13,10 @@ double Robot::currentDistance;
 
 void Robot::AutonomousInit() 
 {
+  jaws.Set(frc::DoubleSolenoid::Value::kReverse);
+  m_encL.Reset();
+  m_encR.Reset();
+
   m_timer.Reset();
   m_timer.Start();  
   //R2Jesu_Slalom();
@@ -22,9 +26,9 @@ void Robot::AutonomousInit()
 }
 
 void Robot::AutonomousPeriodic() 
-{
-
-if ((frc::SmartDashboard::GetString("autonomous course", "0") == "1") 
+{  
+  R2Jesu_Autonomous();
+/*if ((frc::SmartDashboard::GetString("autonomous course", "0") == "1") 
   && (frc::SmartDashboard::GetString("has bounce run", "n") == "n")) {
   R2Jesu_Bounce(); 
   frc::SmartDashboard::PutString("has bounce run", "y");
@@ -40,7 +44,7 @@ if ((frc::SmartDashboard::GetString("autonomous course", "0") == "3")
   && (frc::SmartDashboard::GetString("has barrel run", "n") == "n")) {
   R2Jesu_Barrel(); 
   frc::SmartDashboard::PutString("has barrel run", "y");
-}
+}*/
 
 }
 

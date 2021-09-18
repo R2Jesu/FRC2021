@@ -25,7 +25,7 @@ void Robot::R2Jesu_ProcessDrive(double p_LimitFactor)
 
 
   // Drive with arcade style (use right stick)
-  m_robotDrive.ArcadeDrive(m_drvL, m_drvR);
+  m_robotDrive.ArcadeDrive(m_drvL, m_drvR, true);
 
 #if R2JESU_TURNON_SMARTDASHBOARD
   frc::SmartDashboard::PutNumber("DrvL", m_drvL);

@@ -66,8 +66,7 @@ void Robot::R2Jesu_ProcessUserControl()
   {
     l_winchMtr = -0.7;
   }
-  else if (l_dashbd_bool &&
-           m_Drivestick.GetRawButton(11) &&
+  else if (m_Drivestick.GetRawButton(11) &&
            m_OperatorStick.GetRawButton(8))
   {
     l_winchMtr = 0.7;
